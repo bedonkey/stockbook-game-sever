@@ -16,8 +16,8 @@ router.post('/generate', function (req, res) {
 	let userID = req.body.userid;
 	let fileName = imagesPath + 'results/' + userID + ".jpg";
 	let name = req.body.name;
-	let text = '2018 ' + bodau(name) + ' dau tu nhu the nao?';
-	let randomNumber = Math.floor(Math.random() * Math.floor(11)) + 1;
+	let text = bodau(name);
+	let randomNumber = Math.floor(Math.random() * Math.floor(27)) + 1;
 	console.log(name)
 	if (fs.existsSync(imagesPath + 'results/' + userID + '.jpg')) {
 		console.log('File exists')
@@ -31,7 +31,7 @@ router.post('/generate', function (req, res) {
 			return Jimp.loadFont(Jimp.FONT_SANS_16_BLACK);
 		})
 		.then(function (font) {
-			loadedImage.print(font, 10, 10, text)
+			loadedImage.print(font, 195, 20, text)
 					   .write(fileName);
 			console.log('Generate image file ....', randomNumber)
 			res.send('Success!');
